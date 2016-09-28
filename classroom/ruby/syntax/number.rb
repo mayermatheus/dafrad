@@ -8,6 +8,9 @@ puts 1_234
 puts 1,234
 
   # ids
+  puts (1).object_id
+  puts (2).object_id
+  puts (3).object_id
   puts (2**61).class
   puts (2**61).object_id.to_s(32)
   puts (2**61).object_id.to_s(32)
@@ -39,6 +42,9 @@ puts 1,234
   puts 10.odd?
   puts 10 == 0
   puts 10.zero?
+  puts 1+1
+  puts 1+'1'
+  puts 1+'1'.to_i
 
 # Bignum
 puts (2**62).class
