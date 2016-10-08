@@ -14,7 +14,14 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
-  # WRITE THIS CODE
+  type = []
+  type[1] = :equilateral
+  type[2] = :isosceles
+  type[3] = :scalene
+
+  sides = [a, b, c]
+  sides.uniq!
+  type[sides.length]
 end
 
 # Error class used in part 2.  No need to change this code.
