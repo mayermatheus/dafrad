@@ -119,6 +119,7 @@ LOREM
   puts "lorem ipsum dolor".include? "dolor"
   puts "lorem ipsum dolor".split(" ").inspect
   puts "lorem ipsum dolor".gsub "dolor", "DOLOR"
+  puts "lorem ipsum dolor" * 3
 
 # Symbol
 

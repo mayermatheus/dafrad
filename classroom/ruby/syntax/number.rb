@@ -43,8 +43,15 @@ puts 1,234
   puts 10 == 0
   puts 10.zero?
   puts 1+1
+  puts 1.+ 1
+  puts 1.+(1)
   puts 1+'1'
   puts 1+'1'.to_i
+  puts 1 + 1 #=> 2
+  puts 8 - 1 #=> 7
+  puts 10 * 2 #=> 20
+  puts 35 / 5 #=> 7
+  puts 2**5 #=> 32
 
 # Bignum
 puts (2**62).class

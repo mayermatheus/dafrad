@@ -1,0 +1,133 @@
+/*
+  Ruby Object Model
+  dot -Tpng ruby-core.dot > ruby-core.png
+  https://www.gliffy.com/go/publish/5152080
+  https://www.gliffy.com/go/publish/image/5152080/L.png
+*/
+digraph Ruby {
+  rankdir = TB;
+  compound=true;
+  node [
+    style="rounded,filled",
+    width=0,
+    height=0,
+    shape=box,
+    fillcolor="#E5E5E5"
+  ]
+
+  edge [
+    dir=back
+  ]
+
+  Object;
+
+  subgraph cluster_0 {
+    BasicObject;
+    Object;
+    BasicObject -> Object;
+
+    subgraph cluster_1 {
+      Numeric [width=2]
+      Numeric -> Float;
+      Numeric -> Integer;
+      Numeric -> Rational;
+      Numeric -> Complex;
+      Integer -> Fixnum;
+      Integer -> Bignum;
+    }
+    Object -> Numeric;
+
+    subgraph cluster_2 {
+      String;
+      Symbol;
+    }
+    Object -> String [lhead="cluster_2"];
+
+
+    subgraph cluster_3 {
+      Regexp;
+    }
+    Object -> Regexp [lhead="cluster_3"];
+
+    subgraph cluster_4 {
+      Array;
+      Hash;
+      Range;
+    }
+    Object -> Array [lhead="cluster_4"];
+
+    subgraph cluster_5 {
+      Exception -> NoMemoryError;
+      Exception -> ScriptError
+      subgraph cluster_51 {
+        ScriptError -> LoadError
+        ScriptError -> NotImplementedError
+        ScriptError -> SyntaxError
+      }
+      Exception -> SignalException;
+      subgraph cluster_52 {
+        SignalException -> Interrupt;
+      }
+      Exception -> StandardError;
+      subgraph cluster_53 {
+        StandardError -> ArgumentError;
+        StandardError -> IndexError;
+        IndexError -> StopIteration;
+        StandardError -> IOError;
+        IOError -> EOFError;
+        StandardError -> LocalJumpError;
+        StandardError -> NameError;
+        NameError -> NoMethodError;
+        StandardError -> RangeError;
+        RangeError -> FloatDomainError;
+        StandardError -> RegexpError;
+        StandardError -> RuntimeError;
+        StandardError -> SecurityError;
+        StandardError -> SystemCallError;
+        SystemCallError -> "Errno::*";
+        StandardError -> SystemStackError;
+        StandardError -> ThreadError;
+        StandardError -> TypeError;
+        StandardError -> ZeroDivisionError;
+      }
+      Exception -> SystemExit;
+      Exception -> fatal;
+    }
+    Object -> Exception;
+
+    subgraph cluster_6 {
+      FalseClass;
+      TrueClass;
+      NilClass;
+      Proc;
+      Data;
+      Method;
+    }
+    Object -> TrueClass [lhead="cluster_6"];
+
+    subgraph cluster_7 {
+      Time;
+    }
+    Object -> Time [lhead="cluster_7"];
+  }
+
+  /*subgraph cluster_8 {
+    Class -> Module [color=green];
+  }
+  Object -> Class  [color=green];*/
+
+  subgraph cluster_9 {
+    Math;
+    Kernel;
+    Enumarable;
+    Comparable;
+  }
+  Kernel -> Object [color=blue];
+  Comparable -> Numeric [color=blue];
+  Comparable -> String [lhead="cluster_2",color=blue];
+  Comparable -> Time [lhead="cluster_7", color=blue];
+  Enumarable -> Array [lhead="cluster_4",color=blue];
+
+
+
+}
