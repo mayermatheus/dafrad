@@ -19,7 +19,12 @@ def triangle(a, b, c)
   type[2] = :isosceles
   type[3] = :scalene
 
-  sides = [a, b, c]
+  sides = [a, b, c].sort
+
+  raise TriangleError if sides.any? {|n| n.zero?}
+  raise TriangleError if sides.any? {|n| n.negative?}
+  raise TriangleError if sides[0]+sides[1] <= sides[2]
+
   sides.uniq!
   type[sides.length]
 end

@@ -1,1 +1,1 @@
-require "test-unit"
+gem "test-unit"
