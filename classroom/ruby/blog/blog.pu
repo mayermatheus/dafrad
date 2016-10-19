@@ -1,0 +1,40 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam monochrome true
+hide circle
+
+package App{
+
+    Article *-- Category: categories
+    Article --* Blog: articles
+
+    class Blog {
+      load(): Boolean
+      list_articles(category: Category): Array[Article]
+      list_categories(): Array[Category]
+    }
+
+    class Article{
+      -id: Integer
+      -title: String
+      -text: String
+      +id(): Integer
+      +id=(): Integer
+      +title(): String
+      +title=(): String
+      +text(): String
+      +text=(): String
+      +categories(): Hash[Category]
+      +categories=(categories): Hash[Category]
+    }
+
+    class Category{
+      -id: Integer
+      -name: String
+      +id(): Integer
+      +id=(): Integer
+      +name(): String
+      +name=(): String
+    }
+}
+@enduml
