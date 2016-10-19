@@ -41,6 +41,7 @@ puts 1,234
   puts 10.even?
   puts 10.odd?
   puts 10 == 0
+  puts 10.eql? 0
   puts 10.zero?
   puts 1+1
   puts 1.+ 1
