@@ -24,8 +24,8 @@ package App{
       +title=(): String
       +text(): String
       +text=(): String
-      +categories(): Hash[Category]
-      +categories=(categories): Hash[Category]
+      +categories(): Array[Category]
+      +categories=(categories): Array[Category]
     }
 
     class Category{

@@ -13,6 +13,7 @@ class TestApp < Minitest::Test
   end
 
   def test_load_articles
+    @blog.load
     articles = @blog.list_articles
     assert_equal 6, articles.length
   end
