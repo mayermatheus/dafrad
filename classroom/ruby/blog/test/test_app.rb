@@ -16,6 +16,8 @@ class TestApp < Minitest::Test
     @blog.load
     articles = @blog.list_articles
     assert_equal 6, articles.length
+
+    assert_equal [App::Category.new(1, "css")], articles.first.categories
   end
 
   def test_load_categories
