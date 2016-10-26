@@ -3,4 +3,8 @@
 # Metacharacters and Escapes
 # Character Classes
 # Repetition
+# $& $` $‘ $+ $1 $~
 # ...
+
+cep = /\d{5}-\d{3}/
+cep.inspect

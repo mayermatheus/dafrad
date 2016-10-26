@@ -82,24 +82,51 @@ end
 puts soma a:1, b:3
 puts soma a:1, b:3, c:2
 
-# Block
-print_string = lambda { |string| puts string }
-print_string.call('hello world')
-print_string['hello world']
-
+# Block, Proc, Lambda
 print_string = Proc.new { |string| puts string }
 print_string['hello world']
 
 print_string = proc { |string| puts string }
+print_string.class #=> Proc
 print_string['hello world']
 
-print_string = ->(string) { puts string }
+print_string = lambda { |string| puts string }
+print_string.class #=> Proc (lambda)
+print_string.call('hello world')
 print_string['hello world']
+
+print_string = ->(string) { puts string } # lambda
+print_string.class #=> Proc (lambda)
+print_string['hello world']
+
+proc = proc {|name| "Hello #{name}"}
+lambda = lambda {|name| "Hello #{name}"}
+proc.call #=> "Hello "
+proc.call("Fulano") #=> "Hello Fulano"
+lambda.call #=> raise ArgumentError
+lambda.call("Fulano") #=> "Hello Fulano"
+
+def hello(name, output)
+  output.call(name)
+end
+p hello("Fulano", ->(name) {return "Hello #{name}"})
+
+def hello(name, output, output2)
+  p output.call(name)
+  p output2.call(name)
+end
+hello("Fulano", ->(name) {return "Hello #{name}"},  ->(name) {return "Ola #{name}"})
 
 def method_block_example
   yield
 end
 method_block_example { puts 'hello world' } # Block Argument
+
+def hello(name, output)
+  p output.call(name)
+  p yield
+end
+hello("Fulano", ->(name) {return "Hello #{name}"}) {"Hello Block"}
 
 def method_block_example
   yield 'hello world'
@@ -115,6 +142,6 @@ method_block_example {|string| puts string }
 
 def method_block_example(&block)
   block.call 'hello world'
-  # yield 'hello world'
+  yield 'hello world'
 end
 method_block_example {|string| puts string}
